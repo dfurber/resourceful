@@ -1,0 +1,246 @@
+form {
+    div.row div.span4 {
+        margin-left:0;
+    }
+}
+#tabs {
+    h3 {
+        margin-left:10px;
+    }
+}
+div.content {
+    margin-top:60px;
+}
+fieldset, div.row {
+    h3 {
+        margin-left:150px;
+    }
+}
+div.row div.filters h3 { margin-left: 0;}
+.panel-left, .panel-right {
+    span.help-inline {
+        display:block;
+    }
+}
+div.actions {
+    clear:both;
+    padding-left:130px;
+    input {
+        margin-right:10px;
+    }
+}
+.panel-left, .panel-right {
+    h3 {
+        margin-left:150px;
+        margin-bottom:1em;
+    }
+}
+div.check_boxes {
+    h4 {
+        clear:both;
+    }
+    div.input {
+        ul.inputs-list {
+            float:left;
+            width:50%;
+        }
+        span {
+            display:block;
+            line-height:18px;
+            label {
+                display: inline;
+                float: none;
+                width: auto;
+                padding: 0;
+                margin-left:0;
+                line-height: $baseline;
+                text-align: left;
+                white-space: normal;
+                strong {
+                  color: $gray;
+                }
+                small {
+                  font-size: 12px;
+                  font-weight: normal;
+                }
+            }
+            input[type=radio],
+            input[type=checkbox] {
+              margin-bottom: 0;
+              margin-left:0;
+              margin-right:6px;
+            }
+        }
+    }
+    label {
+        padding-top:0;
+    }    
+}
+
+div.radio_buttons {
+    span {
+        display:inline-block;
+        padding-top:6px;
+        input {
+            margin-bottom:0;
+            margin-right:6px;
+        }
+        label {
+            float: none;
+            width: auto;
+            padding: 0;
+            line-height: $baseline;
+            text-align: left;
+            white-space: normal;
+            margin-right:12px;
+        }
+    }
+}
+
+div.nested-form {
+    div.row {
+        padding-bottom:10px;
+        margin-bottom:20px;
+        border-bottom: 1px solid #DDD;
+    }
+    div.nested-form-item {
+        position: relative;
+        padding: 7px 15px;
+        margin-bottom: $baseline;
+        color: $grayDark;
+        @include gradientBar(#fceec1, #eedc94);
+        text-shadow: 0 1px 0 rgba(255,255,255,.5);
+        @include border-radius(4px);
+        @include box-shadow(inset 0 1px 0 rgba(255,255,255,.25));
+        color: $grayDark;
+        text-shadow: 0 1px 0 rgba(255,255,255,.5);
+        background-image: none;
+        background-color: lighten(#62c462, 30%);
+        @include reset-filter();
+        padding: 14px;
+        border-color: #fceec1;
+        ul, p {
+          margin-right: 30px;
+        }
+        ul {
+          margin-bottom: 0;
+        }
+        li {
+          color: $grayDark;
+        }
+        &.removed {
+            background-color: lighten(#f56a66, 25%);
+            border-color: lighten(#f56a66, 20%);
+        }
+        
+    }
+}
+
+div.nested-actions {
+    background-color:white;
+    border-top:none;
+    padding-top:0;
+}
+
+div.clearfix {
+    margin-bottom:8px;
+}
+#login-form {
+    width:500px;
+    margin:40px auto;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.37);
+    legend {
+        padding-top:20px;
+        padding-left:150px;
+    }
+    div.actions {
+        margin-bottom:0;
+        
+    }
+}
+
+.page-header {
+    .pills {
+        float:right;
+    }
+}
+
+div.filters {
+    float:right;
+    width:180px;
+    padding:10px 10px 0;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.37);
+    form.form-stacked {
+        padding-left:0;
+        margin-bottom:0;
+        input[type=text], select {
+            width:160px;
+        }
+        div.actions {
+            margin-bottom:0;
+            margin-left:-10px;
+            margin-right:-10px;
+        }
+    }
+    & + table {
+        width:700px;
+    }
+}
+
+div.panel-left {
+    float:left;
+    width:50%;
+}
+div.panel-right {
+    float:right;
+    width:50%;
+    @include clearfix;
+}
+
+dl {
+    dt {
+        float:left;
+        width:150px;
+        clear:both;
+        padding:4px 0;
+    }
+    dd {
+        margin-left:150px;
+        padding:4px 0;
+    }
+}
+
+@mixin imitation_fieldsets(){
+    div.row {
+        border-bottom: 1px solid #ddd;
+        padding-bottom:10px;
+        padding-top:16px;
+        margin-bottom:0;
+        @include clearfix;
+    }
+}
+
+div.row {
+    margin-left:0;
+}
+
+table.details {
+    tr th:nth-child(3) {
+        border-left:1px solid #ddd;
+    }
+    border-bottom:1px solid #ddd;
+}
+
+.page {
+    margin-bottom:36px;
+}
+.ui-accordion {
+    h3 {
+        padding-left:30px;
+        padding-top:4px;
+        padding-bottom:4px;
+    }
+}
+
+
+

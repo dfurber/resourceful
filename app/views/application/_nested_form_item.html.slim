@@ -1,0 +1,10 @@
+== div_for(form.object, :class => "nested-form-item") do
+  - inputs.each do |input|
+    = render_input form, input
+  - if allow_destroy and not form.object.new_record?
+    = form.input :_destroy, :label => remove_label,:input_html=> {:class=> 'kill-detail'}, :as => :boolean, :wrapper => :inline
+  - else
+    .clearfix
+      .input
+        a.btn.remove href="#"
+          == remove_label

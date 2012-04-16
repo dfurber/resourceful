@@ -1,0 +1,26 @@
+doctype 5
+html
+  head
+    title
+      = browser_title
+    = stylesheet_link_tag    "application" 
+    = javascript_include_tag "application" 
+    = csrf_meta_tags
+    link rel='shortcut icon' href='/img/favicon.ico' type='image/x-icon'
+  body
+    .navbar.navbar-fixed-top
+      .navbar-inner data-dropdown="dropdown"
+        .container
+          == render 'navbar'
+
+    .container
+      .content
+        - title = page_title
+        - if title.present?
+          .page-header
+            - if content_for? :pills
+              ul.nav.nav-pills
+                == yield :pills
+            h1= page_title
+        == render 'layouts/notifications'
+        == yield

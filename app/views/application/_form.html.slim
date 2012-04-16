@@ -1,0 +1,5 @@
+= simple_form_for controller.resource_form_target do |form|
+  - controller.inputs.each do |input|
+    = render_input form, input
+  div.form-actions
+    == render 'actions', :form => form

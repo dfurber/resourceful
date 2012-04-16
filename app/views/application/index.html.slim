@@ -1,0 +1,11 @@
+- set_page_title controller.index_title
+
+== render 'collection_pills'
+
+- if controller.filter_columns.any?
+  == render 'collection_filters'
+  
+- if collection.any?
+  == render 'collection_table'
+- else
+  p= "No #{controller.controller_name.pluralize.titleize} found."

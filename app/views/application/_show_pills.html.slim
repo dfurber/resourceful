@@ -1,0 +1,5 @@
+- unless controller.is_singleton
+  li= link_to 'Back to List', collection_path
+li= link_to 'Edit', edit_resource_path
+- unless controller.is_singleton
+  li= link_to 'Delete', resource_path, :method => :delete, :confirm => 'Are you sure?'

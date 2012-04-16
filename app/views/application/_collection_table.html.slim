@@ -1,0 +1,12 @@
+table.table.table-striped.table-bordered(id="#{controller.controller_name.underscore}_table")
+  thead
+    tr
+      == render 'collection_headers'
+      th Actions
+  tbody
+    - collection.each do |row|
+      tr class="#{cycle('odd','even')}"
+        == render 'collection_columns', :row => row
+        td== render 'collection_actions', :row => row
+- if collection.respond_to?(:current_page)
+  == paginate collection   

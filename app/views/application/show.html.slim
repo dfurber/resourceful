@@ -1,0 +1,6 @@
+- set_page_title controller.show_title
+
+== render 'resource_details', :attributes => controller.attributes_to_show
+
+- content_for :pills do
+  == render 'show_pills'

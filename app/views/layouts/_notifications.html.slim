@@ -1,0 +1,12 @@
+- unless flash[:notice].blank?
+  div class="notification alert-message success"
+    a class="close" href="#" onclick="$(this).parent().fadeOut();"
+      x
+    = flash[:notice]
+
+- unless flash[:errors].blank?
+  div class="notification alert-message error"
+    a class="close" href="#" onclick="$(this).parent().fadeOut();"
+      x
+    = flash[:errors]
+

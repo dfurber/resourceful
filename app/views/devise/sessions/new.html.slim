@@ -1,0 +1,20 @@
+#login-form
+  = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+    = devise_error_messages!
+    fieldset
+      legend Log In
+      = f.input :email
+      = f.input :password
+
+      - if devise_mapping.rememberable?
+        .clearfix
+          label 
+          .input.boolean 
+            = f.check_box :remember_me
+            span.inline-hint Remember me
+
+      .actions
+        .secondary-action
+          == render :partial => "devise/shared/links"
+        button.btn(type='submit') Log In
+        

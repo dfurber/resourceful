@@ -1,0 +1,6 @@
+= form.submit 'Submit', :class => 'btn primary'
+- if controller.methods.include?(:index)
+  = link_to 'Cancel', collection_url, :class => 'btn'
+
+- content_for :pills do
+  == render 'form_pills'

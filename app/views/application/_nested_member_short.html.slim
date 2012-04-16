@@ -1,0 +1,7 @@
+- items = model.send(name)
+- if items.any?
+  - items.each do |item|
+    p
+      - renderer.attributes_to_show.each do |attribute|
+        = render_attribute item, attribute
+        br

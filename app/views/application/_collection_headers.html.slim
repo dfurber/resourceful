@@ -1,0 +1,7 @@
+- controller.columns.each do |col|
+  - header_label = col[:label] || col[:name].to_s.titleize
+  - if col[:sortable].present?
+    - sort_col = col[:sortable].is_a?(String) ? col[:sortable] : col[:name]
+    = sort_column sort_col, header_label
+  - else
+    th= header_label

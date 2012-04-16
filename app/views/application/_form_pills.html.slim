@@ -1,0 +1,6 @@
+- if controller.methods.include?(:index)
+  li= link_to 'Back To List', collection_url
+- if resource.persisted?
+  li= link_to 'View', resource_path
+  - if controller.methods.include?(:destroy)
+    li= link_to 'Delete', resource_path, :method => :delete, :confirm => 'Are you sure?'

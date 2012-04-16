@@ -1,0 +1,16 @@
+div.filters
+  h3 Filters
+  - search = resource_class.search params[:search]
+  = simple_form_for search, :url => collection_path, :html => {:method => :get, :class => 'form-stacked'} do |form|
+    - controller.filter_columns.each do |options|
+      - filter = options.dup
+      - name = filter[:name]
+      - filter[:as] ||= :string
+      - filter[:required] = false
+      - filter[:collection] = filter[:collection].call(form, controller) if filter[:collection].is_a?(Proc)
+      = form.input name, filter
+    
+    div.form-actions
+      = form.submit 'Apply', :class => 'btn btn-primary'
+      = link_to 'Reset', collection_url, :class => 'btn'
+  

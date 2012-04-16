@@ -1,0 +1,11 @@
+.row
+  h3= title
+  div class="nested-form #{class_name}"
+    = form.fields_for name do |nested_form|
+      == render 'nested_form_item', :inputs => inputs, :form => nested_form, :remove_label => remove_label, :allow_destroy => allow_destroy
+  .actions.nested-actions
+    - child_object = form.object.class.reflect_on_association(name).klass.new
+    - child_link_fields = capture do
+      = form.fields_for name, child_object, :child_index => "new_#{name}" do |nested_form|
+        == render 'nested_form_item', :inputs => inputs, :form => nested_form, :remove_label => remove_label, :allow_destroy => false
+    == link_to_function(add_child_link_text, "insert_fields(this, \"#{name}\", \"#{escape_javascript(child_link_fields)}\")".html_safe, :class => "btn")
