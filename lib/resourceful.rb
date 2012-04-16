@@ -2,16 +2,12 @@ require "resourceful/version"
 
 require 'inherited_resources'
 require 'simple_form'
-# require 'devise'
 require 'has_scope'
 require 'kaminari'
 require 'slim'
 require 'meta_search'
 require 'andand'
 require 'carrierwave'
-# require 'sass-rails'
-# require 'bootstrap-sass'
-require 'jquery-rails'
 
 module Resourceful
   # Your code goes here...
