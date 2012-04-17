@@ -4,7 +4,7 @@
     h3= panel.title
     == render panel.tab
   - else
-    table.table.details
+    table.details
       tbody
         - panel.attributes_to_show.each do |attribute|
           tr class="#{cycle('odd','even')}"

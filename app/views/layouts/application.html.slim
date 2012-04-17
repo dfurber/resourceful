@@ -7,11 +7,13 @@ html
     = javascript_include_tag "application" 
     = csrf_meta_tags
     link rel='shortcut icon' href='/img/favicon.ico' type='image/x-icon'
+    == yield :head
   body
-    .navbar.navbar-fixed-top
-      .navbar-inner data-dropdown="dropdown"
-        .container
-          == render 'navbar'
+    .topbar-wrapper
+      .topbar data-dropdown="dropdown"
+        .fill
+          .container
+            == render 'navbar'
 
     .container
       .content
@@ -19,7 +21,7 @@ html
         - if title.present?
           .page-header
             - if content_for? :pills
-              ul.nav.nav-pills
+              ul.pills
                 == yield :pills
             h1= page_title
         == render 'layouts/notifications'

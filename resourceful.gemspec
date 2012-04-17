@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.email       = ["furberd@gmail.com"]
   s.homepage    = ""
   s.summary     = %q{Application skeleton using inherited resources and views, and twitter bootstrap 1.3.}
-  s.description = %q{Summary pretty much says it all right now. TODO: update to twitter bootstrap 2.}
+  s.description = %q{Summary pretty much says it all right now.}
 
   s.rubyforge_project = "resourceful"
 

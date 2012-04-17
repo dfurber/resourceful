@@ -36,7 +36,8 @@ module Resourceful
     end
     
     def resource_params
-      super.first
+      p = super
+      p == [{}] ? {} : p
     end
 
     def build_resource 

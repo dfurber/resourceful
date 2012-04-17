@@ -10,7 +10,7 @@ div.filters
       - filter[:collection] = filter[:collection].call(form, controller) if filter[:collection].is_a?(Proc)
       = form.input name, filter
     
-    div.form-actions
+    div.actions
       = form.submit 'Apply', :class => 'btn btn-primary'
-      = link_to 'Reset', collection_url, :class => 'btn'
+      = link_to 'Reset', collection_path, :class => 'btn'
   
