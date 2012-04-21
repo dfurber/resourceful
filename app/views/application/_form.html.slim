@@ -1,4 +1,4 @@
-= simple_form_for controller.resource_form_target do |form|
+= simple_form_for controller.resource_form_target, controller.resource_form_arguments do |form|
   - controller.inputs.each do |input|
     = render_input form, input
   div.actions

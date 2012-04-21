@@ -18,8 +18,12 @@ module Resourceful
   autoload :FormApi, 'resourceful/form_api'
   autoload :CollectionTableApi, 'resourceful/collection_table_api'
   autoload :CollectionFilterApi, 'resourceful/collection_filter_api'
+  autoload :CollectionSorting, 'resourceful/collection_sorting'
   autoload :MemberPageApi, 'resourceful/member_page_api'
   autoload :NestedForm, 'resourceful/nested_form'
+  
+  autoload :Sorting, 'resourceful/sorting'
+  autoload :SortableList, 'resourceful/sortable_list'
   
   
 end
@@ -30,13 +34,13 @@ class ActionController::Base
     class_eval do
 
       inherit_resources  
-      has_scope :sort, :only => :index, :using => [:c, :d]
       respond_to :html
 
       include Resourceful::BaseMethods
       include Resourceful::FormApi
       include Resourceful::CollectionTableApi
       include Resourceful::CollectionFilterApi
+      include Resourceful::CollectionSorting
       include Resourceful::MemberPageApi
       
     end

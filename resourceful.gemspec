@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
 
-  s.add_dependency "inherited_resources"
+  s.add_dependency "inherited_resources", '1.2.2'
   s.add_dependency "simple_form"
   s.add_dependency "has_scope"
   s.add_dependency "kaminari"

@@ -29,6 +29,15 @@ module ResourcefulHelper
     
     options = model if model.is_a?(Hash)
     
+    if_statement = options[:if]
+    if if_statement.is_a?(Proc)
+      return unless if_statement.call(controller)
+    end
+    unless_statement = options[:unless]
+    if unless_statement.is_a?(Proc)
+      return if unless_statement.call(controller)
+    end
+
     return render_nested_attributes(model, options) if options[:with]
     
     if options[:as] == :tab
@@ -148,19 +157,19 @@ module ResourcefulHelper
 
   # Makes the TH of a column sortable. 
   def sort_column(column, title, options = {})
-    if params[:sort]
-      c = params[:sort][:c]
-      d = params[:sort][:d]
+    if params[:sort_order]
+      c = params[:sort_order][:c]
+      d = params[:sort_order][:d]
     else
-      c = 'default'
-      d = 'up'
+      c = controller.default_sort_column
+      d = controller.default_sort_direction
     end
     condition = options[:unless] if options.has_key?(:unless)
     sort_dir = d == 'up' ? 'down' : 'up'
     link_class = (d == 'up' ? 'headerSortDown' : 'headerSortUp') if c == column.to_s
     html = []
     html << "<th class=\"header #{link_class}\">"
-    html << link_to_unless(condition, title, request.parameters.merge( :sort => {:c => column, :d => sort_dir}))
+    html << link_to_unless(condition, title, request.parameters.merge( :sort_order => {:c => column, :d => sort_dir}))
     html << "</th>"
     html.join('').html_safe
   end

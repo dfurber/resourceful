@@ -27,6 +27,14 @@ module Resourceful
     def default_sort_column
       'name'
     end
+    
+    def default_sort_direction
+      'asc'
+    end
+    
+    def resource_form_arguments
+      {}
+    end
 
     def collection
       get_collection_ivar ||= end_of_association_chain.search(params[:search]).relation
