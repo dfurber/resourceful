@@ -2,27 +2,19 @@ module Resourceful
   
   module FormApiMethods
 
-    def self.input(name, opts={})
+    def input(name, opts={})
       _resourceful_process_item(:inputs, name, opts)
     end
     
-    def self.exclude_input(name)
+    def exclude_input(name)
       _resourceful_exclude_item :inputs, name
     end
 
-    # def input(name, opts={})
-    #   opts.symbolize_keys!
-    #   opts[:name] = name
-    #   @inputs ||= []
-    #   @inputs << opts
-    # end
-    
     def legend(title)
       _resourceful_process_item :inputs, nil, {:as => :legend, :label => title}
     end
     
     def fieldset(side, &block)
-      @inputs ||= []
       _resourceful_process_item :inputs, nil, {:as => :fieldset, :fieldset => Fieldset.new(side, &block)}
     end
   end
@@ -30,9 +22,12 @@ module Resourceful
   module FormApi
 
     extend ActiveSupport::Concern
-    extend FormApiMethods
 
     included do
+      
+      class_eval do
+        extend FormApiMethods
+      end
 
       def inputs;                     self.class.inputs; end
 
