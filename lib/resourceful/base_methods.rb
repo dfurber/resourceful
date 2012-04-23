@@ -67,6 +67,6 @@ module Resourceful
     def is_singleton
       resources_configuration[:self][:singleton]
     end
-
+    
   end
 end

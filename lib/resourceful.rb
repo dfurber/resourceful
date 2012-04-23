@@ -14,6 +14,7 @@ module Resourceful
   class Engine < ::Rails::Engine
   end
   
+  autoload :ClassMethods, 'resourceful/class_methods'
   autoload :BaseMethods, 'resourceful/base_methods'
   autoload :FormApi, 'resourceful/form_api'
   autoload :CollectionTableApi, 'resourceful/collection_table_api'
@@ -36,6 +37,7 @@ class ActionController::Base
       inherit_resources  
       respond_to :html
 
+      extend  Resourceful::ClassMethods
       include Resourceful::BaseMethods
       include Resourceful::FormApi
       include Resourceful::CollectionTableApi

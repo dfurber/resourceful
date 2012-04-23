@@ -11,15 +11,15 @@ module Resourceful
       protected
       
       def self.column(name, opts={})
-        opts.symbolize_keys!
-        opts[:name] = name
-        @columns ||= []
-        @columns << opts
+        _resourceful_process_item(:columns, name, opts)
+      end
+      
+      def self.exclude_column(name)
+        _resourceful_exclude_item :columns, name
       end
 
-      def self.columns;               @columns; end
-      
-      @columns = []
+      class_attribute :columns
+      self.columns = []
       
     end
     

@@ -6,20 +6,22 @@ module Resourceful
     
     included do
       
-      def filter_columns;             self.class.filter_columns || []; end
+      def filter_columns
+        self.class.filter_columns
+      end
       
       protected
       
       def self.filter(name, opts={})
-        opts.symbolize_keys!
-        opts[:name] = name
-        @filter_columns ||= []
-        @filter_columns << opts
+        _resourceful_process_item(:filter_columns, name, opts)
       end
-
-      def self.filter_columns;        @filter_columns; end
       
-      @filter_columns = []
+      def self.exclude_filter(name)
+        _resourceful_exclude_item :filter_columns, name
+      end
+      
+      class_attribute :filter_columns
+      self.filter_columns = []
       
     end
     
