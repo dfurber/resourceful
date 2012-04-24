@@ -3,29 +3,32 @@ module Resourceful
   module MemberPageMethods
 
     def show(name, opts={})
+      opts.symbolize_keys!
       if name.is_a? Hash
         opts = name 
       else
         opts[:name] = name
-      end
-      opts.symbolize_keys!
-      
+      end      
       if opts[:tab]
         opts[:as] = :tab
+        opts[:name] = opts[:tab]
       end
-      
-      @attributes_to_show ||= []
-      @attributes_to_show << opts
+
+      _resourceful_process_item(:attributes_to_show, name, opts)
+    end
+    
+    def hide(name)
+      _resourceful_exclude_item :attributes_to_show, name
     end
 
     def heading(title)
-      @attributes_to_show ||= []
-      @attributes_to_show << {:as => :heading, :label => title}
+      opts = {:as => :heading, :label => title}
+      _resourceful_process_item(:attributes_to_show, title, opts)
     end
     
     def panel(side, &block)
-      @attributes_to_show ||= []
-      @attributes_to_show << {:as => :panel, :panel => Panel.new(side, &block)}
+      opts = {:as => :panel, :panel => Panel.new(side, &block)}
+      _resourceful_process_item(:attributes_to_show, nil, opts)
     end
     
   end
@@ -36,15 +39,14 @@ module Resourceful
     
     included do
       
-      self.extend MemberPageMethods
+      decorate_class_with MemberPageMethods
       
-      def attributes_to_show;         self.class.attributes_to_show || []; end
+      def attributes_to_show;         self.class.attributes_to_show; end
       
       protected 
       
-      def self.attributes_to_show;    @attributes_to_show; end
-
-      @attributes_to_show = []
+      class_attribute :attributes_to_show
+      self.attributes_to_show = []
       
     end
     
@@ -52,10 +54,12 @@ module Resourceful
   
   class Panel
     include MemberPageMethods
+    include ListBuilder
     attr_reader :attributes_to_show, :side
 
     def initialize(side, &block)
       @side = side
+      @attributes_to_show = []
       instance_eval(&block) if block_given?
     end
 

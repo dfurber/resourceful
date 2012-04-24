@@ -25,9 +25,7 @@ module Resourceful
 
     included do
       
-      class_eval do
-        extend FormApiMethods
-      end
+      decorate_class_with FormApiMethods
 
       def inputs;                     self.class.inputs; end
 
@@ -43,11 +41,13 @@ module Resourceful
   class Fieldset
 
     attr_reader :side, :inputs
-
+        
+    include ListBuilder
     include FormApiMethods
 
     def initialize(side, &block)
       @side = side
+      @inputs = []
       instance_eval(&block) if block_given?
     end
     

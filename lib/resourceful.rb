@@ -24,6 +24,7 @@ module Resourceful
   
   autoload :Sorting, 'resourceful/sorting'
   autoload :SortableList, 'resourceful/sortable_list'
+  autoload :ListBuilder, 'resourceful/list_builder'
   
   
 end
@@ -49,4 +50,12 @@ class ActionController::Base
   
   
 end
+
+def decorate_class_with(module_name)
+  class_eval do
+    extend module_name
+  end
+end
+
+
 

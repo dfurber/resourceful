@@ -222,4 +222,20 @@ module ResourcefulHelper
     content_tag(:li, link_to(name, '#', :class => 'dropdown-toggle') + content_tag(:ul, items.html_safe, :class => 'dropdown-menu'), :class => :dropdown)
   end
   
+  def renderable_columns
+    cols = []
+    controller.columns.each do |options|
+      if_statement = options.delete :if
+      if if_statement.is_a?(Proc)
+        next unless if_statement.call(controller)
+      end
+      unless_statement = options.delete :unless
+      if unless_statement.is_a?(Proc)
+        next if unless_statement.call(controller)
+      end
+      cols << options
+    end
+    cols
+  end
+  
 end
