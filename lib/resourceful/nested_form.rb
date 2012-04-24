@@ -2,6 +2,7 @@ module Resourceful
   
   class NestedForm
   
+    decorate_class_with ListBuilder
     include Resourceful::FormApi
     include Resourceful::MemberPageApi
   
