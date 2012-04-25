@@ -10,13 +10,14 @@ module Resourceful
         key = _get_index_for list, (opts[:before] || opts[:after])
         if key
           list.insert (opts.key?(:before) ? key : key+1), opts
-          return
+          return list
         end
       end
       list << opts
     end
 
     def _resourceful_exclude_item(list, name)
+      list ||= []
       list.map {|value| value[:name] == name ? nil : value }.compact
     end
 

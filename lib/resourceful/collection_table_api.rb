@@ -11,7 +11,7 @@ module Resourceful
         @columns
       end
       def columns
-        self.class.columns
+        self.class.columns || {}
       end
 
       protected
