@@ -1,28 +1,28 @@
 module Resourceful
   module ListBuilder
-    def _resourceful_process_item(type, name, opts={})
+    def _resourceful_process_item(list, name, opts={})
+      list ||= []
       opts.symbolize_keys!
       opts[:name] = name
       if opts.key?(:prepend)
-        send(type).unshift opts
+        list.unshift opts
       elsif opts.key?(:before) or opts.key?(:after)
-        key = _get_index_for type, (opts[:before] || opts[:after])
+        key = _get_index_for list, (opts[:before] || opts[:after])
         if key
-          send(type).insert (opts.key?(:before) ? key : key+1), opts
+          list.insert (opts.key?(:before) ? key : key+1), opts
           return
         end
       end
-      send(type) << opts
+      list << opts
     end
 
-    def _resourceful_exclude_item(type, name)
-      send "#{type}=", send(type).map {|value| value[:name] == name ? nil : value }.compact
-
+    def _resourceful_exclude_item(list, name)
+      list.map {|value| value[:name] == name ? nil : value }.compact
     end
 
-    def _get_index_for(type, name)
+    def _get_index_for(list, name)
       needle = nil
-      self.send(type).each_with_index {|item, i| needle = i if item[:name] == name }
+      list.each_with_index {|item, i| needle = i if item[:name] == name }
       needle
     end
   end

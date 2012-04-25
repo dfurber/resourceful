@@ -14,21 +14,21 @@ module Resourceful
         opts[:name] = opts[:tab]
       end
 
-      _resourceful_process_item(:attributes_to_show, name, opts)
+      @attributes_to_show = _resourceful_process_item(@attributes_to_show, name, opts)
     end
     
     def hide(name)
-      _resourceful_exclude_item :attributes_to_show, name
+      @attributes_to_show = _resourceful_exclude_item @attributes_to_show, name
     end
 
     def heading(title)
       opts = {:as => :heading, :label => title}
-      _resourceful_process_item(:attributes_to_show, title, opts)
+      @attributes_to_show = _resourceful_process_item(@attributes_to_show, title, opts)
     end
     
     def panel(side, &block)
       opts = {:as => :panel, :panel => Panel.new(side, &block)}
-      _resourceful_process_item(:attributes_to_show, nil, opts)
+      @attributes_to_show = _resourceful_process_item(@attributes_to_show, nil, opts)
     end
     
   end
@@ -41,9 +41,13 @@ module Resourceful
       
       decorate_class_with MemberPageMethods
       
-      class_attribute :attributes_to_show, instance_reader: true
-      self.attributes_to_show = []
-      
+      @attributes_to_show = []
+      def self.attributes_to_show
+        @attributes_to_show
+      end
+      def attributes_to_show
+        self.class.attributes_to_show
+      end
       
     end
     
