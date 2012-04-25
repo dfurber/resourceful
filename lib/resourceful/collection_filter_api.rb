@@ -6,8 +6,13 @@ module Resourceful
     
     included do
       
+      @filter_columns = []
+      def filter_columns; self.class.filter_columns; end
+
       protected
       
+      def self.filter_columns; @filter_columns; end
+
       def self.filter(name, opts={})
         @filter_columns = _resourceful_process_item(@filter_columns, name, opts)
       end
@@ -16,9 +21,6 @@ module Resourceful
         @filter_columns = _resourceful_exclude_item @filter_columns, name
       end
       
-      @filter_columnss = []
-      def self.filter_columns; @filter_columns; end
-      def filter_columns; self.class.filter_columns; end
       
     end
     
