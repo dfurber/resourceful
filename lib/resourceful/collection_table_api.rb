@@ -6,8 +6,9 @@ module Resourceful
     
     included do
       
-      def columns;                    self.class.columns || []; end
-      
+      class_attribute :columns, instance_reader: true
+      self.columns = []
+
       protected
       
       def self.column(name, opts={})
@@ -18,8 +19,6 @@ module Resourceful
         _resourceful_exclude_item :columns, name
       end
 
-      class_attribute :columns
-      self.columns = []
       
     end
     

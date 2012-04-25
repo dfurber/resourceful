@@ -20,7 +20,7 @@ module Resourceful
         _resourceful_exclude_item :filter_columns, name
       end
       
-      class_attribute :filter_columns
+      class_attribute :filter_columns, instance_reader: true
       self.filter_columns = []
       
     end

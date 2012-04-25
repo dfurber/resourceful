@@ -41,12 +41,9 @@ module Resourceful
       
       decorate_class_with MemberPageMethods
       
-      def attributes_to_show;         self.class.attributes_to_show; end
-      
-      protected 
-      
-      class_attribute :attributes_to_show
+      class_attribute :attributes_to_show, instance_reader: true
       self.attributes_to_show = []
+      
       
     end
     

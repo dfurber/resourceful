@@ -18,7 +18,6 @@ class DateTimeInput < SimpleForm::Inputs::DateTimeInput
 
       result = []
       result.push(value.strftime("%Y-%m-%d")) if input_type =~ /date/
-      # result.push(I18n.localize(value, { :format => "%a %d %b %Y" })) if input_type =~ /date/
       if input_type =~ /time/
         hours_format = options[:"24hours"] ? "%H:%M" : "%I:%M %p"
         result.push(I18n.localize(value, { :format => hours_format }))

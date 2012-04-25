@@ -27,11 +27,7 @@ module Resourceful
       
       decorate_class_with FormApiMethods
 
-      def inputs;                     self.class.inputs; end
-
-      protected
-      
-      class_attribute :inputs
+      class_attribute :inputs, instance_reader: true
       self.inputs = []
       
     end
