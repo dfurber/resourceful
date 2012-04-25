@@ -6,8 +6,6 @@ require 'has_scope'
 require 'kaminari'
 require 'slim'
 require 'meta_search'
-require 'andand'
-require 'carrierwave'
 
 module Resourceful
   # Your code goes here...

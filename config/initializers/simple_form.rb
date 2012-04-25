@@ -8,22 +8,22 @@ SimpleForm.setup do |config|
   config.wrappers :default, :class => 'clearfix', :error_class => :error do |b|
     b.use :placeholder
     b.use :label
-    b.use :tag => 'div', :class => 'input' do |ba|
+    b.wrapper :tag => 'div', :class => 'input' do |ba|
       ba.use :input
-      ba.use :error, :tag => :span, :class => :'help-inline'
-      ba.use :hint,  :tag => :span, :class => :'help-block'
+      ba.use :error, :wrap_with => {:tag => :span, :class => :'help-inline'}
+      ba.use :hint,  :wrap_with => {:tag => :span, :class => :'help-block'}
     end
   end
 
   config.wrappers :inline, :class => 'clearfix inline', :error_class => :error do |b|
     b.use :placeholder
-    b.use :tag => 'div', :class => 'input' do |ba|
-      ba.use :tag => 'ul', :class => 'inputs-list' do |bb|
-        bb.use :tag => 'li' do |bc|
+    b.wrapper :tag => 'div', :class => 'input' do |ba|
+      ba.wrapper :tag => 'ul', :class => 'inputs-list' do |bb|
+        bb.wrapper :tag => 'li' do |bc|
           bc.use :input
           bc.use :label
-          bc.use :error, :tag => :span, :class => :'help-inline'
-          bc.use :hint,  :tag => :span, :class => :'help-block'
+          bc.use :error, :wrap_with => {:tag => :span, :class => :'help-inline'}
+          bc.use :hint,  :wrap_with => {:tag => :span, :class => :'help-block'}
         end
       end
     end
@@ -32,34 +32,34 @@ SimpleForm.setup do |config|
   config.wrappers :stacked, :class => "clearfix", :error_class => :error do |b|
     b.use :placeholder
     b.use :label
-    b.use :hint,  :tag => :span, :class => :'help-block'
-    b.use :tag => 'div', :class => 'input' do |input|
+    b.use :hint,  :wrap_with => {:tag => :span, :class => :'help-block'}
+    b.wrapper :tag => 'div', :class => 'input' do |input|
       input.use :input
-      input.use :error, :tag => :span, :class => :'help-inline'
+      input.use :error, :wrap_with => {:tag => :span, :class => :'help-inline'}
     end
   end
 
   config.wrappers :prepend, :class => "clearfix", :error_class => :error do |b|
     b.use :placeholder
     b.use :label
-    b.use :hint,  :tag => :span, :class => :'help-block'
-    b.use :tag => 'div', :class => 'input' do |input|
-      input.use :tag => 'div', :class => 'input-prepend' do |prepend|
+    b.use :hint,  :wrap_with => {:tag => :span, :class => :'help-block'}
+    b.wrapper :tag => 'div', :class => 'input' do |input|
+      input.wrapper :tag => 'div', :class => 'input-prepend' do |prepend|
         prepend.use :input
       end
-      input.use :error, :tag => :span, :class => :'help-inline'
+      input.use :error, :wrap_with => {:tag => :span, :class => :'help-inline'}
     end
   end
 
   config.wrappers :append, :class => "clearfix", :error_class => :error do |b|
     b.use :placeholder
     b.use :label
-    b.use :hint,  :tag => :span, :class => :'help-block'
-    b.use :tag => 'div', :class => 'input' do |input|
-      input.use :tag => 'div', :class => 'input-append' do |append|
+    b.use :hint,  :wrap_with => {:tag => :span, :class => :'help-block'}
+    b.wrapper :tag => 'div', :class => 'input' do |input|
+      input.wrapper :tag => 'div', :class => 'input-append' do |append|
         append.use :input
       end
-      input.use :error, :tag => :span, :class => :'help-inline'
+      input.use :error, :wrap_with => {:tag => :span, :class => :'help-inline'}
     end
   end
 

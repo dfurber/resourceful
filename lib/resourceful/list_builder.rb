@@ -1,11 +1,14 @@
 module Resourceful
   module ListBuilder
+    
+    private
+    
     def _resourceful_process_item(list, name, opts={})
       list ||= []
       opts.symbolize_keys!
       opts[:name] = name
       if opts.key?(:prepend)
-        list.unshift opts
+        return list.unshift opts
       elsif opts.key?(:before) or opts.key?(:after)
         key = _get_index_for list, (opts[:before] || opts[:after])
         if key
