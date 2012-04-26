@@ -6,7 +6,8 @@ table.bordered-table.zebra-striped(id="#{controller.controller_name.underscore}_
   tbody
     - collection.each do |row|
       tr class="#{cycle('odd','even')}"
-        == render 'collection_columns', :row => row
+        - renderable_columns.each do |col|
+          td= render_attribute row, col.reverse_merge(hide_label: true)
         td== render 'collection_actions', :row => row
 - if collection.respond_to?(:current_page)
   == paginate collection   

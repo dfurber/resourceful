@@ -46,7 +46,7 @@ module Resourceful
         @attributes_to_show
       end
       def attributes_to_show
-        self.class.attributes_to_show
+        self.class.attributes_to_show || []
       end
       
     end

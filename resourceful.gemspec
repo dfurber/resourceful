@@ -27,6 +27,7 @@ Gem::Specification.new do |s|
   s.add_dependency "kaminari"
   s.add_dependency "slim"
   s.add_dependency "meta_search", '>= 1.1'
+  s.add_dependency "cells"
 
   # specify any dependencies here; for example:
   # s.add_development_dependency "rspec"

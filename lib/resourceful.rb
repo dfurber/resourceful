@@ -6,6 +6,7 @@ require 'has_scope'
 require 'kaminari'
 require 'slim'
 require 'meta_search'
+require 'cells'
 
 module Resourceful
   # Your code goes here...

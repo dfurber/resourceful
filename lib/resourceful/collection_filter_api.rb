@@ -7,7 +7,7 @@ module Resourceful
     included do
       
       @filter_columns = []
-      def filter_columns; self.class.filter_columns; end
+      def filter_columns; self.class.filter_columns || []; end
 
       protected
       

@@ -40,26 +40,45 @@ module ResourcefulHelper
 
     return render_nested_attributes(model, options) if options[:with]
     
-    if options[:as] == :tab
-      return render(options[:tab])
-    end
-    
-    if options[:args] and options[:args] == :model
-      value = model
-    else
-      value = model.send options[:name]
-    end
-    
-    if options[:formatter]
-      if options[:formatter].is_a? Symbol
-        send options[:formatter], value
+    case options[:as]
+    when :tab
+      render options[:tab]
+    when :cell
+      options.delete :as
+      display  = options.delete(:display) || :display
+      label    = options.delete(:label)
+      contents = render_cell options[:name], display, options.merge(:model => model)
+      if label
+        content_tag :dl, "#{content_tag(:dt, label_for_attribute(options))}#{content_tag(:dd, contents)}".html_safe
       else
-        options[:formatter].call value
+        contents
       end
     else
-      value
+      if options[:args] and options[:args] == :model
+        value = model
+      else
+        value = model.send options[:name]
+      end
+
+      value = if options[:formatter]
+        if options[:formatter].is_a? Symbol
+          send options[:formatter], value
+        else
+          options[:formatter].call value
+        end
+      else
+        value
+      end
+      
+      if options.delete(:hide_label)
+        value
+      else
+        label = label_for_attribute options
+        content_tag :dl, "#{content_tag(:dt, label_for_attribute(options))}#{content_tag(:dd, value)}".html_safe
+      end
+      
     end
-  
+      
   end
   
   def label_for_attribute(attribute)
@@ -101,6 +120,10 @@ module ResourcefulHelper
     when :nested
       options.delete :as
       render_nested_form form, name, options
+    when :cell
+      options.delete :as
+      display = options[:display] || :form
+      render_cell name, display, :form => form
     when :partial
       render name.to_s, :form => form
     when :association
@@ -238,4 +261,26 @@ module ResourcefulHelper
     cols
   end
   
+  def error_messages_for(object, message=nil)
+    html = ""
+    unless object.errors.blank?
+      html << "<div class='formErrors #{object.class.name.humanize.downcase}Errors'>\n"
+      if message.blank?
+        if object.new_record?
+          html << "\t\t<h5>There was a problem creating the #{object.class.name.humanize.downcase}</h5>\n"
+        else
+          html << "\t\t<h5>There was a problem updating the #{object.class.name.humanize.downcase}</h5>\n"
+        end    
+      else
+        html << "<h5>#{message}</h5>"
+      end  
+      html << "\t\t<ul>\n"
+      object.errors.full_messages.each do |error|
+        html << "\t\t\t<li>#{error}</li>\n"
+      end
+      html << "\t\t</ul>\n"
+      html << "\t</div>\n"
+    end
+    html
+  end
 end
