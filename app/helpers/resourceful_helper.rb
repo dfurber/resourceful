@@ -106,9 +106,9 @@ module ResourcefulHelper
       return unless if_statement.call(form.object)
     end
     unless_statement = options[:unless]
-    if unless_statement.is_a?(Proc)
-      return if unless_statement.call(form.object)
-    end
+    
+    return if unless_statement.is_a?(Proc) and unless_statement.call(form.object)
+
     on_action = options[:on]
     return if on_action and not on_action_condition_met?(on_action)
     options[:collection] = options[:collection].call(form) if options[:collection].is_a?(Proc)
@@ -123,9 +123,9 @@ module ResourcefulHelper
     when :cell
       options.delete :as
       display = options[:display] || :form
-      render_cell name, display, :form => form
+      render_cell name, display, options.merge(form: form, model: form.object)
     when :partial
-      render name.to_s, :form => form
+      render name.to_s, form: form
     when :association
       options.delete :as
       form.association name, options
@@ -153,7 +153,7 @@ module ResourcefulHelper
       form.object.send(name).build
     end
     
-    render 'nested_form', :form => form, 
+    render '/application/nested_form', :form => form, 
                           :name => name,
                           :title => source.title,
                           :class_name => source.class_name,
@@ -213,9 +213,13 @@ module ResourcefulHelper
       nil
     end
   end
+  
+  def set_browser_title(value)
+    @browser_title = value
+  end
 
   def browser_title
-    title = page_title
+    title = @browser_title || page_title
     "#{title ? "#{title} | " : nil}#{AppConfig.site_title}"
   end
   
@@ -283,4 +287,5 @@ module ResourcefulHelper
     end
     html
   end
+    
 end
