@@ -111,7 +111,7 @@ module ResourcefulHelper
 
     on_action = options[:on]
     return if on_action and not on_action_condition_met?(on_action)
-    options[:collection] = options[:collection].call(form) if options[:collection].is_a?(Proc)
+    options[:collection] = options[:collection].call(form, controller) if options[:collection].is_a?(Proc)
     case options[:as]
     when :fieldset
       render_fieldset form, options[:fieldset]
