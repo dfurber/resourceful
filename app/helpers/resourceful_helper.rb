@@ -28,6 +28,7 @@ module ResourcefulHelper
   def render_attribute(model, options)
     
     options = model if model.is_a?(Hash)
+    logger.info options.inspect
     
     if_statement = options[:if]
     if if_statement.is_a?(Proc)
@@ -44,7 +45,6 @@ module ResourcefulHelper
     when :tab
       render options[:tab]
     when :cell
-      options.delete :as
       display  = options.delete(:display) || :display
       label    = options.delete(:label)
       contents = render_cell options[:name], display, options.merge(:model => model)
