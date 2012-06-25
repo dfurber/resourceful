@@ -28,7 +28,7 @@ module ResourcefulHelper
   def render_attribute(model, options)
     
     options = model if model.is_a?(Hash)
-    logger.info options.inspect
+    options = options.dup
     
     if_statement = options[:if]
     if if_statement.is_a?(Proc)
