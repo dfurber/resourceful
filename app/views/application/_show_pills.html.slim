@@ -1,4 +1,4 @@
-- if defined? parent
+- if defined?(parent) and parent.present?
   li= link_to "Back to #{parent.andand.name || 'Parent'}", parent_path
 - unless controller.is_singleton
   li= link_to 'Back to List', collection_path

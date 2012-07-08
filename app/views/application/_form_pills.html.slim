@@ -1,4 +1,4 @@
-- if defined? parent
+- if defined?(parent) and parent.present?
   li= link_to "Back to #{parent.andand.name || 'Parent'}", parent_path
 - if controller.methods.include?(:index)
   li= link_to 'Back To List', collection_path
