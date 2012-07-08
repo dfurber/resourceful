@@ -1,0 +1,7 @@
+- controller.filter_columns.each do |options|
+  - filter = options.dup
+  - name = filter[:name]
+  - filter[:as] ||= :string
+  - filter[:required] = false
+  - filter[:collection] = filter[:collection].call(form, controller) if filter[:collection].is_a?(Proc)
+  = form.input name, filter

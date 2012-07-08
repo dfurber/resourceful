@@ -1,6 +1,6 @@
-- if controller.methods.include?(:show)
+- if controller.methods.include?(:show) and controller.can_show?(row)
   = link_to 'View', resource_path(row), :class => 'btn small'
-- if controller.methods.include?(:edit)
+- if controller.methods.include?(:edit) and controller.can_update?(row)
   = link_to 'Edit', edit_resource_path(row), :class => 'btn small'
-- if controller.methods.include?(:destroy)
+- if controller.methods.include?(:destroy) and controller.can_destroy?(row)
   = link_to 'Delete', resource_path(row), :class => 'btn small', :method => :delete, :confirm => 'Are you sure? There is no going back.'

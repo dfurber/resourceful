@@ -21,6 +21,23 @@ module Resourceful
       def show_title
         resource.respond_to?(:name) ? resource.name : controller_name.singularize.titleize
       end
+      
+      # Stubbed implementation - you should override with your own authorization logic.
+      def can_create?(item=nil)
+        true
+      end
+      
+      def can_update?(item=nil)
+        true
+      end
+      
+      def can_show?(item=nil)
+        true
+      end
+      
+      def can_destroy?(item=nil)
+        true
+      end
 
       def resource_form_target
         resource

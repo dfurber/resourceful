@@ -34,7 +34,7 @@ class ActionController::Base
     class_eval do
 
       inherit_resources  
-      respond_to :html
+      respond_to :html, :json
 
       include Resourceful::BaseMethods
       include Resourceful::FormApi

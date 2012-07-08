@@ -1,6 +1,8 @@
+- if defined? parent
+  li= link_to "Back to #{parent.andand.name || 'Parent'}", parent_path
 - if controller.methods.include?(:index)
   li= link_to 'Back To List', collection_path
-- if controller.methods.include?(:show) and resource.persisted?
+- if controller.methods.include?(:show) and resource.persisted? and controller.can_show?
   li= link_to 'View', resource_path
-  - if controller.methods.include?(:destroy)
+  - if controller.methods.include?(:destroy) and controller.can_destroy?
     li= link_to 'Delete', resource_path, :method => :delete, :confirm => 'Are you sure?'
