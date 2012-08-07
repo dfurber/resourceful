@@ -28,15 +28,15 @@ module Resourceful
       end
       
       def can_update?(item=nil)
-        methods.include?(:update)
+        methods.include?(:update) and resource_is_persisted?(item)
       end
       
       def can_show?(item=nil)
-        methods.include?(:show) and (item || resource).persisted?
+        methods.include?(:show) and resource_is_persisted?(item)
       end
       
       def can_destroy?(item=nil)
-        methods.include?(:destroy) and (item || resource).persisted?
+        methods.include?(:destroy) and resource_is_persisted?(item)
       end
       
       def has_index_page?
@@ -100,6 +100,13 @@ module Resourceful
       end
       helper_method :parent_name
 
+
+      private
+      
+      def resource_is_persisted?(item=nil)
+        item ||= resource
+        resource.persisted?
+      end
     end
   end
   
