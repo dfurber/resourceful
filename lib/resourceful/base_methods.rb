@@ -24,19 +24,23 @@ module Resourceful
       
       # Stubbed implementation - you should override with your own authorization logic.
       def can_create?(item=nil)
-        true
+        methods.include?(:create)
       end
       
       def can_update?(item=nil)
-        true
+        methods.include?(:update)
       end
       
       def can_show?(item=nil)
-        true
+        methods.include?(:show) and resource.persisted?
       end
       
       def can_destroy?(item=nil)
-        true
+        methods.include?(:destroy)
+      end
+      
+      def has_index_page?
+        methods.include?(:index) and not is_singleton
       end
 
       def resource_form_target

@@ -1,9 +1,9 @@
 - if defined?(parent) and parent.present?
   li= link_to "Back to #{parent.andand.name || 'Parent'}", parent_path
-- unless controller.is_singleton
+- if controller.has_index_page?
   li= link_to 'Back to List', collection_path
 - if controller.can_update?
   li= link_to 'Edit', edit_resource_path
 - unless controller.is_singleton
   - if controller.can_destroy?
-    li= link_to 'Delete', resource_path, :method => :delete, :confirm => 'Are you sure?'
+    li= link_to 'Delete', resource_path, method: :delete, data: { confirm: 'Are you sure?' }

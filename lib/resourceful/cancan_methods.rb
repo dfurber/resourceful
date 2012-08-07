@@ -3,26 +3,33 @@ module Resourceful
     extend ActiveSupport::Concern
     
     included do
+
       load_and_authorize_resource
+
+      alias_method_chain :can_create?, :cancan
+      alias_method_chain :can_update?, :cancan
+      alias_method_chain :can_show?, :cancan
+      alias_method_chain :can_destroy?, :cancan
+
     end
     
-    # Stubbed implementation - you should override with your own authorization logic.
-    def can_create?(item=nil)
-      can :create, item || resource
+    def can_create_with_cancan?(item=nil)
+      can_create_without_cancan? and can?(:create, item || resource)
     end
     
-    def can_update?(item=nil)
-      can :update, item || resource
+    def can_update_with_cancan?(item=nil)
+      can_update_without_cancan? and can?(:update, item || resource)
     end
     
-    def can_show?(item=nil)
-      can :read, item || resource
+    def can_show_with_cancan?(item=nil)
+      can_show_without_cancan? and can?(:read, item || resource)
     end
     
-    def can_destroy?(item=nil)
-      can :destroy, item || resource
+    def can_destroy_with_cancan?(item=nil)
+      can_destroy_without_cancan? and can?(:destroy, item || resource)
     end
 
+    
     
     
   end
