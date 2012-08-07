@@ -36,7 +36,7 @@ module Resourceful
       end
       
       def can_destroy?(item=nil)
-        (item || resource).persisted? and methods.include?(:destroy)
+        methods.include?(:destroy) and (item || resource).persisted?
       end
       
       def has_index_page?
