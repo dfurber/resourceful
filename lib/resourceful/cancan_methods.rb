@@ -12,19 +12,19 @@ module Resourceful
     end
     
     def can_create_with_cancan?(item=nil)
-      can_create_without_cancan? and can?(:create, self.resource_class)
+      can_create_without_cancan?(item) and can?(:create, self.resource_class)
     end
     
     def can_update_with_cancan?(item=nil)
-      can_update_without_cancan? and can?(:update, item || resource)
+      can_update_without_cancan?(item) and can?(:update, item || resource)
     end
     
     def can_show_with_cancan?(item=nil)
-      can_show_without_cancan? and can?(:read, item || resource)
+      can_show_without_cancan?(item) and can?(:read, item || resource)
     end
     
     def can_destroy_with_cancan?(item=nil)
-      can_destroy_without_cancan? and can?(:destroy, item || resource)
+      can_destroy_without_cancan?(item) and can?(:destroy, item || resource)
     end
 
     
