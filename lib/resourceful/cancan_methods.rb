@@ -4,8 +4,6 @@ module Resourceful
     
     included do
 
-      load_and_authorize_resource
-
       alias_method_chain :can_create?, :cancan
       alias_method_chain :can_update?, :cancan
       alias_method_chain :can_show?, :cancan
