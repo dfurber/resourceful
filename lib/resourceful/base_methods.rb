@@ -104,8 +104,8 @@ module Resourceful
       private
       
       def resource_is_persisted?(item=nil)
-        item ||= resource
-        resource.persisted?
+        item = resource if item.blank? and params[:id]
+        item && item.persisted?
       end
     end
   end
