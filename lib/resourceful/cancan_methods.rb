@@ -14,7 +14,7 @@ module Resourceful
     end
     
     def can_create_with_cancan?(item=nil)
-      can_create_without_cancan? and can?(:create, item || resource)
+      can_create_without_cancan? and can?(:create, self.resource_class)
     end
     
     def can_update_with_cancan?(item=nil)
