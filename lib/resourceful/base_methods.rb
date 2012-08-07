@@ -98,6 +98,7 @@ module Resourceful
       def parent_name
         parent.andand.name || 'Parent'
       end
+      helper_method :parent_name
 
     end
   end
