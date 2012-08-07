@@ -32,11 +32,11 @@ module Resourceful
       end
       
       def can_show?(item=nil)
-        methods.include?(:show) and resource.persisted?
+        methods.include?(:show) and (item || resource).persisted?
       end
       
       def can_destroy?(item=nil)
-        resource.persisted? and methods.include?(:destroy)
+        (item || resource).persisted? and methods.include?(:destroy)
       end
       
       def has_index_page?
