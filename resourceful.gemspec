@@ -28,7 +28,8 @@ Gem::Specification.new do |s|
   s.add_dependency "slim"
   s.add_dependency "meta_search", '>= 1.1'
   s.add_dependency "cells"
-
+  s.add_dependency "andand"
+  
   # specify any dependencies here; for example:
   # s.add_development_dependency "rspec"
   # s.add_runtime_dependency "rest-client"

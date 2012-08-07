@@ -1,5 +1,5 @@
 - if defined?(parent) and parent.present?
-  li= link_to "Back to #{parent.andand.name || 'Parent'}", parent_path
+  li= link_to "Back to #{parent_name}", parent_path
 - if controller.has_index_page?
   li= link_to 'Back To List', collection_path
 - if controller.can_show?

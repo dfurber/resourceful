@@ -1,6 +1,6 @@
 div.actions
   = form.submit 'Submit', :class => 'btn primary'
-  - if controller.methods.include?(:index)
+  - if controller.has_index_page?
     = link_to 'Cancel', collection_path, :class => 'btn'
 
 - content_for :pills do

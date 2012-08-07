@@ -94,6 +94,11 @@ module Resourceful
       def is_singleton
         resources_configuration[:self][:singleton]
       end    
+      
+      def parent_name
+        parent.andand.name || 'Parent'
+      end
+
     end
   end
   
