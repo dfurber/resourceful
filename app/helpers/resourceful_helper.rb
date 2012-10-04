@@ -60,6 +60,12 @@ module ResourcefulHelper
         value = model.send options[:name]
       end
 
+      value = yes_or_no(value) if value == !!value
+      if options[:time]
+        value = value.to_s(options[:time])
+        options[:nowrap] = true
+      end
+
       value = if options[:formatter]
         if options[:formatter].is_a? Symbol
           send options[:formatter], value
@@ -69,11 +75,14 @@ module ResourcefulHelper
       else
         value
       end
-      
-      if options.delete(:hide_label)
+
+      if options[:nowrap]
+        value = content_tag :span, value, style: "white-space:nowrap"
+      end
+
+      if options[:hide_label]
         value
       else
-        label = label_for_attribute options
         content_tag :dl, "#{content_tag(:dt, label_for_attribute(options))}#{content_tag(:dd, value)}".html_safe
       end
       
@@ -153,7 +162,7 @@ module ResourcefulHelper
       form.object.send(name).build
     end
     
-    render '/application/nested_form', :form => form, 
+    render '/base/nested_form', :form => form,
                           :name => name,
                           :title => source.title,
                           :class_name => source.class_name,
@@ -287,5 +296,11 @@ module ResourcefulHelper
     end
     html
   end
+
+  def yes_or_no(value)
+    value ? "Yes" : "No"
+  end
+
+
     
 end

@@ -20,6 +20,7 @@ module Resourceful
   autoload :CollectionSorting, 'resourceful/collection_sorting'
   autoload :MemberPageApi, 'resourceful/member_page_api'
   autoload :NestedForm, 'resourceful/nested_form'
+  autoload :DraperMethods, 'resourceful/draper_methods'
   
   autoload :Sorting, 'resourceful/sorting'
   autoload :SortableList, 'resourceful/sortable_list'
@@ -42,6 +43,7 @@ class ActionController::Base
       include Resourceful::CollectionFilterApi
       include Resourceful::CollectionSorting
       include Resourceful::MemberPageApi
+      include Resourceful::DraperMethods
       
     end
     

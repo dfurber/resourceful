@@ -15,7 +15,7 @@ module Resourceful
         self.default_sort_direction = value
       end
       
-      has_scope :sort_order, :only => :index, :using => [:c, :d], :default => {} do |controller, scoped, value| #, :default => [default_sort_column, default_sort_direction]
+      has_scope :sort_order, :only => :index, :using => [:c, :d], :default => {} do |controller, scoped, value|
         if !value.first and !value.last
           value.first = controller.default_sort_column
           value.last  = controller.default_sort_direction
