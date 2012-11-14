@@ -26,15 +26,11 @@ module Resourceful::DraperMethods
       end
     end
 
-    def collection
-      return get_collection_ivar if get_collection_ivar
-      items = end_of_association_chain.search(params[:search]).relation
-      get_collection_ivar = if decorator_exists?
-        items.map { |item| decorator.decorate item }
-      else
-        items
-      end
+    def decorated_collection
+      return collection unless decorator_exists?
+      @decorated_collection ||= collection.map { |item| decorator.decorate item }
     end
+    helper_method :decorated_collection
 
   end
 

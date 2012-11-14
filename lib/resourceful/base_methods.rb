@@ -67,6 +67,10 @@ module Resourceful
         get_collection_ivar ||= end_of_association_chain.search(params[:search]).relation
       end
 
+      def decorated_collection
+        collection
+      end
+
       def scenario
       end
     
