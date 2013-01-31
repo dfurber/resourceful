@@ -5,7 +5,7 @@ module Resourceful
     
     def _resourceful_process_item(list, name, opts={})
       list ||= []
-      opts.symbolize_keys!
+      #opts.symbolize_keys!
       opts[:name] = name
       if opts.key?(:prepend)
         return list.unshift opts

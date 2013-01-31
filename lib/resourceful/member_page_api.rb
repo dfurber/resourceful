@@ -3,7 +3,7 @@ module Resourceful
   module MemberPageMethods
 
     def show(name, opts={})
-      opts.symbolize_keys!
+      # opts.symbolize_keys!
       if name.is_a? Hash
         opts = name 
       else
