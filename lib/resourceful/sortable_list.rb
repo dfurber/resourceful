@@ -16,7 +16,7 @@ module Resourceful
         else
           prior = self.class.find value
           if prior.present?
-            self.position = prior.position
+            self.position = prior.position + 1
           end
         end
 
