@@ -30,6 +30,7 @@ Gem::Specification.new do |s|
   s.add_dependency "cells"
   s.add_dependency "andand"
   s.add_dependency "draper"
+  s.add_dependency "acts_as_list"
   
   # specify any dependencies here; for example:
   # s.add_development_dependency "rspec"
